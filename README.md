@@ -3,7 +3,7 @@
 ## Getting Started
 ```
 composer install
-cp artisan .env.example .env
+cp .env.example .env
 ```
 setup variables:
 - APP_URL
@@ -16,11 +16,12 @@ setup variables:
 
 ```
 php artisan migrate
+php artisan key:generate
 ```
 
 ## Run Tests
 ```
-phpunit
+phpunit tests
 ```
 
 ## API methods
