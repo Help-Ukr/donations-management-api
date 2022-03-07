@@ -18,6 +18,7 @@ setup variables:
 php artisan migrate
 php artisan key:generate
 ```
+mail account ([mailtrap](https://mailtrap.io/) for development/testing)
 
 ## Run Tests
 ```
@@ -34,5 +35,6 @@ phpunit tests
   -------
   POST            api/login
   POST            api/register
+  POST            api/forgot-password
 
 ```

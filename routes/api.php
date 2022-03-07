@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ItemCategoryController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\ForgotPasswordController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,3 +28,4 @@ Route::middleware('auth:sanctum')->group(function(){
 
 Route::post('/register', RegisterController::class)->name('user.register');
 Route::post('/login', LoginController::class)->name('user.login');
+Route::post('/forgot-password', ForgotPasswordController::class)->name('user.forgot');
