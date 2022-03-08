@@ -27,7 +27,5 @@ class ForgotPasswordTest extends TestCase
         $user = $this->createUser();
         $response = $this->postJson(route('user.forgot'), ['email' => $user->email])
                         ->assertOk();
-        // dd($response);
-        // $response->assertJsonValidationErrors(['email']);
     }
 }
