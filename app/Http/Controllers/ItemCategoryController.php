@@ -25,6 +25,10 @@ class ItemCategoryController extends Controller
      *         response="401",
      *         description="Unauthenticated",
      *     ),
+     *     @OA\Response(
+     *         response="429",
+     *         description="Too Many Requests",
+     *     ),
      * )
      *
      * @return JsonResponse
@@ -63,6 +67,10 @@ class ItemCategoryController extends Controller
      *     @OA\Response(
      *             response="401",
      *             description="Unauthenticated",
+     *     ),
+     *     @OA\Response(
+     *         response="429",
+     *         description="Too Many Requests",
      *     ),
      * )
      *
@@ -103,6 +111,10 @@ class ItemCategoryController extends Controller
      *         response="422",
      *         description="Unprocessable Entity",
      *     ),
+     *     @OA\Response(
+     *         response="429",
+     *         description="Too Many Requests",
+     *     ),
      * )
      *
      * @param ItemCategoryRequest $request
@@ -140,6 +152,10 @@ class ItemCategoryController extends Controller
      *     @OA\Response(
      *             response="401",
      *             description="Unauthenticated",
+     *     ),
+     *     @OA\Response(
+     *         response="429",
+     *         description="Too Many Requests",
      *     ),
      * )
      *
@@ -188,6 +204,10 @@ class ItemCategoryController extends Controller
      *     @OA\Response(
      *             response="401",
      *             description="Unauthenticated",
+     *     ),
+     *     @OA\Response(
+     *         response="429",
+     *         description="Too Many Requests",
      *     ),
      * )
      *
