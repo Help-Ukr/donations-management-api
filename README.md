@@ -17,8 +17,11 @@ setup variables:
 ```
 php artisan migrate
 php artisan key:generate
+php artisan l5-swagger:generate
 ```
 mail account ([mailtrap](https://mailtrap.io/) for development/testing)
+
+API documentation: /api/documentation
 
 ## Run Tests
 ```
