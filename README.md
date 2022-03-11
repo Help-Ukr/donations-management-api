@@ -36,6 +36,12 @@ phpunit tests
   PUT|PATCH       api/item-category/{item_category}
   DELETE          api/item-category/{item_category}
   -------
+  GET|HEAD        api/collect-point
+  POST            api/collect-point
+  GET|HEAD        api/collect-point/{collect_point}
+  PUT|PATCH       api/collect-point/{collect_point}
+  DELETE          api/collect-point/{collect_point}
+  -------
   POST            api/login
   POST            api/register
   POST            api/forgot-password
