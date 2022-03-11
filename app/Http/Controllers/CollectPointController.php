@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\CollectPoint;
+use App\Actions\CollectPointFilterAction;
 use App\Http\Requests\CollectPointRequest;
+use App\Http\Requests\CollectPointFilterRequest;
 use Symfony\Component\HttpFoundation\Response;
 
 
@@ -13,11 +14,31 @@ class CollectPointController extends Controller
     /**
      * @OA\Get(
      *     path="/api/collect-point",
-     *     summary="Get collcet points list",
+     *     summary="Get collcet points list with filter",
      *     tags={"Collect point CRUD"},
      *     security={
      *           {"bearerAuth":{}}
      *     },
+     *     @OA\Parameter(
+     *         description="Filter collect points by coordinate pair 1 - is the upper left corner, coordinate pair 2 - is the lower right corner",
+     *         in="query",
+     *         name="bbox",
+     *         required=false,
+     *         example="51.3269812,26.5834494,47.9900323,37.6214393",
+     *         @OA\Schema(
+     *            type="text",
+     *         )
+     *     ),
+     *     @OA\Parameter(
+     *         description="Filter collect points by items category id",
+     *         in="query",
+     *         name="itemsAvailable",
+     *         required=false,
+     *         example="3,5,10,11",
+     *         @OA\Schema(
+     *            type="text",
+     *         )
+     *     ),
      *     @OA\Response(
      *         response=200,
      *         description="Successful operation",
@@ -33,11 +54,13 @@ class CollectPointController extends Controller
      *     ),
      * )
      *
+     * @param CollectPointFilterRequest $request
      * @return JsonResponse
      * @throws Throwable
      */
-    public function index()
+    public function index(CollectPointFilterRequest $request, CollectPointFilterAction $action)
     {
+        return response($action->handle($request->validated()));
         return response(CollectPoint::with(['neededItems', 'availableItems'])->get());
     }
 

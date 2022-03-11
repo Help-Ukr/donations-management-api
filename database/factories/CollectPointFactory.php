@@ -33,7 +33,7 @@ class CollectPointFactory extends Factory
 
     private function getNeededItems()
     {
-        $i = rand(2,10);
+        $i = rand(1, 3);
         $result = [];
 
         while($i > 0){
@@ -46,7 +46,7 @@ class CollectPointFactory extends Factory
 
     private function getAvailableItems()
     {
-        $i = rand(2,10);
+        $i = rand(1, 3);
         $result = [];
 
         while($i > 0){

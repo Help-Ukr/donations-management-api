@@ -24,6 +24,9 @@ return new class extends Migration
             $table->string('telegram')->nullable();
             $table->string('image')->nullable();
             $table->timestamps();
+
+            $table->index('latitude');
+            $table->index('longitude');
         });
     }
 
