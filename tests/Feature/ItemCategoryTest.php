@@ -6,8 +6,6 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use App\Models\ItemCategory;
-use App\Models\User;
-use Laravel\Sanctum\Sanctum;
 
 class ItemCategoryTest extends TestCase
 {
@@ -21,8 +19,7 @@ class ItemCategoryTest extends TestCase
         parent::setUp(); 
         $this->itemCategory = ItemCategory::factory()->create();
 
-        $user = User::factory()->create();
-        Sanctum::actingAs($user);
+        $this->authUser();
     }
 
     /**

@@ -42,7 +42,7 @@ class ItemCategoryController extends Controller
 
     /**
      * @OA\Get(
-     *     path="/api/item-category/{itemCategoryId}",
+     *     path="/api/item-category/{item_category_id}",
      *     summary="Get item categories record details",
      *     tags={"Item Category CRUD"},
      *     security={
@@ -51,7 +51,7 @@ class ItemCategoryController extends Controller
      *     @OA\Parameter(
      *         description="ID item category",
      *         in="path",
-     *         name="itemCategoryId",
+     *         name="item_category_id",
      *         required=true,
      *         example="1",
      *         @OA\Schema(
@@ -137,7 +137,7 @@ class ItemCategoryController extends Controller
      *     @OA\Parameter(
      *         description="ID item category",
      *         in="path",
-     *         name="itemCategoryId",
+     *         name="item_category_id",
      *         required=true,
      *         example="1",
      *         @OA\Schema(
@@ -180,7 +180,7 @@ class ItemCategoryController extends Controller
      *     @OA\Parameter(
      *         description="ID item category",
      *         in="path",
-     *         name="itemCategoryId",
+     *         name="item_category_id",
      *         required=true,
      *         example="1",
      *         @OA\Schema(

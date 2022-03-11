@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ItemCategoryController;
+use App\Http\Controllers\CollectPointController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
@@ -20,6 +21,7 @@ use App\Http\Controllers\Auth\ForgotPasswordController;
 Route::middleware('throttle')->group(function(){
     Route::middleware('auth:sanctum')->group(function(){
         Route::apiResource('item-category', ItemCategoryController::class);
+        Route::apiResource('collect-point', CollectPointController::class);
     });
 
     Route::post('/register', RegisterController::class)->name('user.register');
