@@ -12,6 +12,7 @@ class ItemCategoryController extends Controller
      * @OA\Get(
      *     path="/api/item-category",
      *     summary="Get item categories list",
+     *     operationId="getItemCategories",
      *     tags={"Item Category CRUD"},
      *     security={
      *           {"bearerAuth":{}}
@@ -44,6 +45,7 @@ class ItemCategoryController extends Controller
      * @OA\Get(
      *     path="/api/item-category/{item_category_id}",
      *     summary="Get item categories record details",
+     *     operationId="getItemCategoryDetails",
      *     tags={"Item Category CRUD"},
      *     security={
      *           {"bearerAuth":{}}
@@ -86,6 +88,7 @@ class ItemCategoryController extends Controller
      * @OA\Put(
      *     path="/api/item-category",
      *     summary="Create item categories record",
+     *     operationId="createItemCategory",
      *     tags={"Item Category CRUD"},
      *     security={
      *           {"bearerAuth":{}}
@@ -130,6 +133,7 @@ class ItemCategoryController extends Controller
      * @OA\Delete(
      *     path="/api/item-category/{itemCategoryId}",
      *     summary="Delete item category record",
+     *     operationId="deleteItemCategory",
      *     tags={"Item Category CRUD"},
      *     security={
      *           {"bearerAuth":{}}
@@ -173,6 +177,7 @@ class ItemCategoryController extends Controller
      * @OA\Patch(
      *     path="/api/item-category/{itemCategoryId}",
      *     summary="Update item category record",
+     *     operationId="updateItemCategory",
      *     tags={"Item Category CRUD"},
      *     security={
      *           {"bearerAuth":{}}

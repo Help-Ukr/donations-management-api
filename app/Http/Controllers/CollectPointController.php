@@ -15,6 +15,7 @@ class CollectPointController extends Controller
      * @OA\Get(
      *     path="/api/collect-point",
      *     summary="Get collcet points list with filter",
+     *     operationId="getCollectionPoint",
      *     tags={"Collect point CRUD"},
      *     security={
      *           {"bearerAuth":{}}
@@ -68,6 +69,7 @@ class CollectPointController extends Controller
      * @OA\Get(
      *     path="/api/collect-point/{collectPointId}",
      *     summary="Get collect point record details",
+     *     operationId="queryCollectionPoint",
      *     tags={"Collect point CRUD"},
      *     security={
      *           {"bearerAuth":{}}
@@ -111,6 +113,7 @@ class CollectPointController extends Controller
      * @OA\Post(
      *     path="/api/collect-point",
      *     summary="Create collect point record",
+     *     operationId="createCollectionPoint",
      *     tags={"Collect point CRUD"},
      *     security={
      *           {"bearerAuth":{}}
@@ -211,6 +214,7 @@ class CollectPointController extends Controller
      * @OA\Delete(
      *     path="/api/collect-point/{collectPointId}",
      *     summary="Delete collect point record",
+     *     operationId="deleteCollectionPoint",
      *     tags={"Collect point CRUD"},
      *     security={
      *           {"bearerAuth":{}}
@@ -254,6 +258,7 @@ class CollectPointController extends Controller
      * @OA\Patch(
      *     path="/api/collect-point/{collectPointId}",
      *     summary="Update icollect point record",
+     *     operationId="updateCollectionPoint",
      *     tags={"Collect point CRUD"},
      *     security={
      *           {"bearerAuth":{}}
