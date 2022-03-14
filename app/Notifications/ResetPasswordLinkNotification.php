@@ -35,6 +35,7 @@ class ResetPasswordLinkNotification extends Notification
      */
     public function toMail($notifiable)
     {
+        \URL::forceRootUrl(\config('app.url'));
         return (new MailMessage)
             ->line('Use this link to reset your password:')
             ->line(url('/reset-pw?') . http_build_query(['token' => $this->token]));
