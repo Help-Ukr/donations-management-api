@@ -36,7 +36,9 @@ use Symfony\Component\HttpFoundation\Response;
  *       @OA\Response(
  *           response=201,
  *           description="Successful user registered",
- *           @OA\JsonContent(ref="#/components/schemas/User")
+ *           @OA\JsonContent(
+ *              @OA\Property(property="token", type="string", example="4|YgqDFR0oCsABfkMES8e65OTVBacZ5fHNnsPFRTMc"),
+ *           )
  *      ),
  *      @OA\Response(
  *           response="429",
