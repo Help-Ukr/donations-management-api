@@ -35,7 +35,7 @@ class CollectPointsTest extends TestCase
     public function test_do_not_allow_for_unauthenticated_users()
     {
         $this->withExceptionHandling();
-        $responce = $this->getJson(route('collect-point.index'))
+        $response = $this->getJson(route('collect-point.index'))
                         ->assertUnauthorized();
     }
 
@@ -84,23 +84,23 @@ class CollectPointsTest extends TestCase
     {
         $this->authUser();
 
-        $responce = $this->getJson(route('collect-point.index'))
+        $response = $this->getJson(route('collect-point.index'))
                         ->assertOk()
                         ->json();
 
-        $this->assertEquals(1, count($responce));
-        $this->assertEquals($this->collectPoint->toArray(), $responce[0]);
+        $this->assertEquals(1, count($response));
+        $this->assertEquals($this->collectPoint->toArray(), $response[0]);
     }
 
     public function test_get_single_collect_point()
     {
         $this->authUser();
 
-        $responce = $this->getJson(route('collect-point.show',  $this->collectPoint->id))
+        $response = $this->getJson(route('collect-point.show',  $this->collectPoint->id))
                         ->assertOk()
                         ->json();
                         
-        $this->assertEquals($this->collectPoint->toArray(), $responce);
+        $this->assertEquals($this->collectPoint->toArray(), $response);
     }
 
     public function test_detele_collect_point()
@@ -131,7 +131,7 @@ class CollectPointsTest extends TestCase
             ['item_category_id' => rand(0, 10)],
         ];
 
-        $responce = $this->patchJson(route('collect-point.update', $this->collectPoint->id), 
+        $response = $this->patchJson(route('collect-point.update', $this->collectPoint->id), 
                 [
                     'name' => 'updated name',
                     'location' => [

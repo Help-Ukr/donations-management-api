@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\Auth\RegisterRequest;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * @OA\Post(
@@ -47,10 +48,14 @@ class RegisterController extends Controller
 {
     public function __invoke(RegisterRequest $request)
     {
-        return User::create([
+        $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
+
+        return response([
+                            'token' => $user->createToken('api')->plainTextToken,
+                        ], Response::HTTP_CREATED);
     }
 }

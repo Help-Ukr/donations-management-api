@@ -29,22 +29,22 @@ class ItemCategoryTest extends TestCase
      */
     public function test_get_all_item_categories()
     {
-        $responce = $this->getJson(route('item-category.index'))
+        $response = $this->getJson(route('item-category.index'))
                     ->assertOk()
                     ->json();
 
-        $this->assertEquals(1, count($responce));
-        $this->assertEquals($this->itemCategory->name, $responce[0]['name']);
+        $this->assertEquals(1, count($response));
+        $this->assertEquals($this->itemCategory->name, $response[0]['name']);
     }
 
     public function test_get_single_item_category()
     {
-        $responce = $this->getJson(route('item-category.show',  $this->itemCategory->id))
+        $response = $this->getJson(route('item-category.show',  $this->itemCategory->id))
                         ->assertOk()
                         ->json();
                         
 
-        $this->assertEquals($this->itemCategory->name, $responce['name']);
+        $this->assertEquals($this->itemCategory->name, $response['name']);
     }
 
     public function test_store_new_item_category()

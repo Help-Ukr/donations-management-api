@@ -35,8 +35,9 @@ class RegistrationTest extends TestCase
 
     public function test_a_user_can_register_with_the_same_email()
     {
-        $this->postJson(route('user.register'), $this->userData)->assertCreated();
+        $response = $this->postJson(route('user.register'), $this->userData)->assertCreated();
         $this->assertDatabaseHas('users', ['name' => $this->userData['name']]);
+        $response->assertSee('token');
 
         $this->withExceptionHandling();
         $response = $this->postJson(route('user.register'), $this->userData)->assertUnprocessable();

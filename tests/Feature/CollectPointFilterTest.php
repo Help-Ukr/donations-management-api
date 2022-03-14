@@ -106,11 +106,11 @@ class CollectPointFilterTest extends TestCase
         $this->assertDatabaseHas('collect_points', ['name' => 'Dnipro']);
         $this->assertDatabaseHas('collect_points', ['name' => 'Kyiv']);
 
-        $responce = $this->getJson(route('collect-point.index'))
+        $response = $this->getJson(route('collect-point.index'))
                 ->assertOk()
                 ->json();
 
-        $this->assertEquals(4, count($responce));
+        $this->assertEquals(4, count($response));
     }
 
     public function test_get_with_wrong_bbox()
