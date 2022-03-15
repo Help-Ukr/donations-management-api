@@ -15,7 +15,9 @@ class CollectPointsTest extends TestCase
 
     public function setUp(): void
     {
-        parent::setUp(); 
+        parent::setUp();
+
+        $currentUser = $this->authUser();
         $collectPointData = CollectPoint::factory()->make()->getAttributes();
         $this->collectPoint = CollectPoint::create([
             'name' => $collectPointData['name'],
@@ -25,6 +27,7 @@ class CollectPointsTest extends TestCase
             'address' => $collectPointData['location']['address'],
             'latitude' => $collectPointData['location']['latitude'],
             'longitude' => $collectPointData['location']['longitude'],
+            'user_id' => $currentUser->id,
         ]);
 
         $this->collectPoint->neededItems()->createMany($collectPointData['needed_items']);
@@ -35,14 +38,14 @@ class CollectPointsTest extends TestCase
     public function test_do_not_allow_for_unauthenticated_users()
     {
         $this->withExceptionHandling();
+        $this->app->get('auth')->forgetGuards();
+
         $response = $this->getJson(route('collect-point.index'))
                         ->assertUnauthorized();
     }
 
     public function test_store_new_collect_point()
     {
-        $this->authUser();
-
         $collectPoint = CollectPoint::factory()->make();
         $response = $this->postJson(route('collect-point.store'), $collectPoint->getAttributes())
                 ->assertCreated()
@@ -71,7 +74,6 @@ class CollectPointsTest extends TestCase
 
     public function test_while_storing_collect_point_name_field_is_required()
     {
-        $this->authUser();
         $this->withExceptionHandling();
 
         $response = $this->postJson(route('collect-point.store'))
@@ -82,8 +84,6 @@ class CollectPointsTest extends TestCase
 
     public function test_get_all_collect_points()
     {
-        $this->authUser();
-
         $response = $this->getJson(route('collect-point.index'))
                         ->assertOk()
                         ->json();
@@ -94,8 +94,6 @@ class CollectPointsTest extends TestCase
 
     public function test_get_single_collect_point()
     {
-        $this->authUser();
-
         $response = $this->getJson(route('collect-point.show',  $this->collectPoint->id))
                         ->assertOk()
                         ->json();
@@ -105,8 +103,6 @@ class CollectPointsTest extends TestCase
 
     public function test_detele_collect_point()
     {
-        $this->authUser();
-
         $this->deleteJson(route('collect-point.destroy', $this->collectPoint->id))
                 ->assertNoContent();
 
@@ -117,18 +113,17 @@ class CollectPointsTest extends TestCase
 
     public function test_update_collect_point()
     {
-        $this->authUser();
         $oldCollectPoint = $this->collectPoint->toArray();
         $availableItems = [
-            ['item_category_id' => rand(0, 10), 'quantity' => rand(0, 100)],
-            ['item_category_id' => rand(0, 10), 'quantity' => rand(0, 100)],
-            ['item_category_id' => rand(0, 10), 'quantity' => rand(0, 100)],
+            ['item_category_id' => rand(11, 20), 'quantity' => rand(0, 100)],
+            ['item_category_id' => rand(11, 20), 'quantity' => rand(0, 100)],
+            ['item_category_id' => rand(11, 20), 'quantity' => rand(0, 100)],
         ];
 
         $neededItems = [
-            ['item_category_id' => rand(0, 10)],
-            ['item_category_id' => rand(0, 10)],
-            ['item_category_id' => rand(0, 10)],
+            ['item_category_id' => rand(11, 20)],
+            ['item_category_id' => rand(11, 20)],
+            ['item_category_id' => rand(11, 20)],
         ];
 
         $response = $this->patchJson(route('collect-point.update', $this->collectPoint->id), 
@@ -169,7 +164,6 @@ class CollectPointsTest extends TestCase
 
     public function test_while_updating_collect_point_name_field_is_required()
     {
-        $this->authUser();
         $this->withExceptionHandling();
 
         $response = $this->patchJson(route('collect-point.update', $this->collectPoint->id))

@@ -19,7 +19,7 @@ class CollectPointFactory extends Factory
         return [
             'name' => $this->faker->name,
             'phone' => $this->faker->e164PhoneNumber(),
-            'telegram' => str_replace('-', '_', '@' . $this->faker->slug()),
+            'telegram' => str_replace('-', '_', '@' . $this->faker->slug(3)),
             'image' => $this->faker->imageUrl(640, 480, 'animals', true),
             'location' => [
                 'address' => $this->faker->address(),

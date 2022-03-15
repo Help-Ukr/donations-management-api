@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\CollectPoint;
 use App\Actions\CollectPointFilterAction;
+use App\Actions\CollectPointMyAction;
 use App\Http\Requests\CollectPointRequest;
 use App\Http\Requests\CollectPointFilterRequest;
 use Symfony\Component\HttpFoundation\Response;
@@ -14,7 +15,7 @@ class CollectPointController extends Controller
     /**
      * @OA\Get(
      *     path="/api/collect-point",
-     *     summary="Get collcet points list with filter",
+     *     summary="Get collect points list with filter",
      *     operationId="getCollectionPoint",
      *     tags={"Collect point CRUD"},
      *     security={
@@ -62,7 +63,39 @@ class CollectPointController extends Controller
     public function index(CollectPointFilterRequest $request, CollectPointFilterAction $action)
     {
         return response($action->handle($request->validated()));
-        return response(CollectPoint::with(['neededItems', 'availableItems'])->get());
+    }
+
+    /**
+     * @OA\Get(
+     *     path="/api/collect-point/my",
+     *     summary="Get collect points of current user",
+     *     operationId="getCollectionPointsMy",
+     *     tags={"Collect point CRUD"},
+     *     security={
+     *           {"bearerAuth":{}}
+     *     },
+     *     @OA\Response(
+     *         response=200,
+     *         description="Successful operation",
+     *         @OA\JsonContent(type="array", @OA\Items(ref="#/components/schemas/CollectPoint"))
+     *     ),
+     *     @OA\Response(
+     *         response="429",
+     *         description="Too Many Requests",
+     *    ),
+     *     @OA\Response(
+     *         response="401",
+     *         description="Unauthenticated",
+     *     ),
+     * )
+     *
+     * @param CollectPointFilterRequest $request
+     * @return JsonResponse
+     * @throws Throwable
+     */
+    public function getMyPoints(CollectPointMyAction $action)
+    {
+        return response($action->handle());
     }
 
     /**
@@ -201,6 +234,7 @@ class CollectPointController extends Controller
         $requestData['latitude'] = $requestData['location']['latitude'];
         $requestData['longitude'] = $requestData['location']['longitude'];
         unset($requestData['location']);
+        $requestData['user_id'] = \Auth::user()->id;
 
         $collectPoint = CollectPoint::create($requestData);
         $collectPoint->neededItems()->createMany($requestData['needed_items']);
