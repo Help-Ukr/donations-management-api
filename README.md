@@ -18,6 +18,7 @@ setup variables:
 php artisan migrate
 php artisan key:generate
 php artisan l5-swagger:generate
+php artisan db:seed ItemCategoryTableSeeder
 ```
 mail account ([mailtrap](https://mailtrap.io/) for development/testing)
 
@@ -32,10 +33,6 @@ phpunit tests
 ```
   GET|HEAD        api/item-category
   GET             api/item-category/my
-  POST            api/item-category
-  GET|HEAD        api/item-category/{item_category}
-  PUT|PATCH       api/item-category/{item_category}
-  DELETE          api/item-category/{item_category}
   -------
   GET|HEAD        api/collect-point
   POST            api/collect-point

@@ -13,7 +13,7 @@ class ItemCategoryController extends Controller
      *     path="/api/item-category",
      *     summary="Get item categories list",
      *     operationId="getItemCategories",
-     *     tags={"Item Category CRUD"},
+     *     tags={"Item Category"},
      *     security={
      *           {"bearerAuth":{}}
      *     },
