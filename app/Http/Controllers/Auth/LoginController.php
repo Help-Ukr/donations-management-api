@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\Auth\LoginRequest;
 use Symfony\Component\HttpFoundation\Response;
 use App\Models\User;
+use Laravel\Socialite\Facades\Socialite;
 
 /**
  * @OA\Post(
@@ -19,9 +20,9 @@ use App\Models\User;
  *         required=true,
  *         description="Pass user credentials",
  *         @OA\JsonContent(
- *            required={"email","password"},
- *            @OA\Property(property="email", type="string", format="email", example="user1@mail.com"),
- *            @OA\Property(property="password", type="string", format="password", example="PassWord12345"),
+ *            required={"token","name"},
+ *            @OA\Property(property="token", type="string", example="ya29.A0ARrdaM-Oj2yWacijuQ5L3dH6tJcIkpjjZ4XRC18J82zAZjmOCHsYh9ExipfVLXt-p4iRvjaBTsCPm-Y5RE2F-ztkqec08juCUktRdRl6D9dWg9CB7kJl8GrhvGMZaIOICZdNJwtHjoXSW6IivTSF5AW53TT3"),
+ *            @OA\Property(property="name", type="string", example="google"),
  *         ),
  *      ),
  *      @OA\Response(
@@ -55,14 +56,19 @@ class LoginController extends Controller
 {
     public function __invoke(LoginRequest $request)
     {
-        if(!\Auth::attempt($request->validated())) {
-            return response('Credentials not match', Response::HTTP_UNAUTHORIZED);
+        try {
+            $mediaUser = Socialite::driver('google')->userFromToken($request->token);
+
+            $user = User::updateOrCreate(
+                ['email' => $mediaUser->email],
+                ['name' => $mediaUser->name, 'password' =>  encrypt('123456dummy')]
+            );
+
+            return response([
+                'token' => $user->createToken('api')->plainTextToken,
+            ]);
+        } catch (\Exception $e) {
+            return response(['message' => $e->getMessage()], Response::HTTP_BAD_REQUEST);
         }
-
-        $token = $request->user()->createToken('api');
-
-        return response([
-            'token' => $token->plainTextToken,
-        ]);
     }
 }

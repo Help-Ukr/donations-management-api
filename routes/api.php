@@ -27,7 +27,5 @@ Route::middleware('throttle')->group(function(){
         Route::get('/logout', LogoutController::class)->name('user.logout');
     });
 
-    Route::post('/register', RegisterController::class)->name('user.register');
     Route::post('/login', LoginController::class)->name('user.login');
-    Route::post('/forgot-password', ForgotPasswordController::class)->name('user.forgot');
 });

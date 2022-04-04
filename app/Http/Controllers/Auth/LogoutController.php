@@ -30,7 +30,6 @@ class LogoutController extends Controller
 {
     public function __invoke(Request $request)
     {
-        // dd($request->user());
         $request->user()->currentAccessToken()->delete();
         return response('User token removed', Response::HTTP_NO_CONTENT);
     }

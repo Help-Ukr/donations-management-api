@@ -31,6 +31,7 @@ phpunit tests
 ## API methods
 ```
   GET|HEAD        api/item-category
+  GET             api/item-category/my
   POST            api/item-category
   GET|HEAD        api/item-category/{item_category}
   PUT|PATCH       api/item-category/{item_category}
@@ -43,7 +44,6 @@ phpunit tests
   DELETE          api/collect-point/{collect_point}
   -------
   POST            api/login
-  POST            api/register
-  POST            api/forgot-password
+  GET            api/logout
 
 ```

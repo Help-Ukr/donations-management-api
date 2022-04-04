@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('collect_points', function (Blueprint $table) {
-            $table->foreignId('user_id')->after('id')->default('');
+            $table->foreignId('user_id')->after('id')->nullable();
         });
     }
 
