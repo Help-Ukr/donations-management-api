@@ -6,6 +6,7 @@ use App\Models\CollectPoint;
 use App\Actions\CollectPointFilterAction;
 use App\Actions\CollectPointMyAction;
 use App\Http\Requests\CollectPointRequest;
+use App\Http\Requests\CollectPointStoreRequest;
 use App\Http\Requests\CollectPointFilterRequest;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -155,11 +156,11 @@ class CollectPointController extends Controller
      *     ),
      * )
      *
-     * @param CollectPointRequest $request
+     * @param CollectPointStoreRequest $request
      * @return JsonResponse
      * @throws Throwable
      */
-    public function store(CollectPointRequest $request)
+    public function store(CollectPointStoreRequest $request)
     {
         $requestData = $request->validated();
         $requestData['address'] = $requestData['location']['address'];
@@ -177,24 +178,13 @@ class CollectPointController extends Controller
 
     /**
      * @OA\Patch(
-     *     path="/api/collect-point/{collectPointId}",
+     *     path="/api/collect-point",
      *     summary="Update icollect point record",
      *     operationId="updateCollectionPoint",
      *     tags={"Collect point"},
      *     security={
      *           {"bearerAuth":{}}
      *     },
-     *     @OA\Parameter(
-     *         description="ID collect point",
-     *         in="path",
-     *         name="collectPointId",
-     *         required=true,
-     *         example="1",
-     *         @OA\Schema(
-     *            type="integer",
-     *            format="int64"
-     *         )
-     *     ),
      *     @OA\RequestBody(
      *         required=true,
      *         description="Input data format",
@@ -252,13 +242,14 @@ class CollectPointController extends Controller
      * @return JsonResponse
      * @throws Throwable
      */
-    public function update(CollectPointRequest $request, CollectPoint $collectPoint)
+    public function update(CollectPointRequest $request)
     {
         $requestData = $request->validated();
         $requestData['address'] = $requestData['location']['address'];
         $requestData['latitude'] = $requestData['location']['latitude'];
         $requestData['longitude'] = $requestData['location']['longitude'];
         unset($requestData['location']);
+        $collectPoint = CollectPoint::where('user_id', \Auth::user()->id)->first();
         $collectPoint->update($requestData);
         $collectPoint->neededItems()->delete();
         $collectPoint->neededItems()->createMany($requestData['needed_items']);
