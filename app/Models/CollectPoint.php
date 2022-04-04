@@ -20,6 +20,7 @@ use Illuminate\Database\Eloquent\Model;
  *     @OA\Property(property="name", type="sring", title="Collect point name", example="Space Meduza"),
  *     @OA\Property(property="phone", type="sring", title="Collect point contact phone number", example="+491767890123"),
  *     @OA\Property(property="telegram", type="sring", title="Collect point telegram account", example="@jax21ukr"),
+ *     @OA\Property(property="instagram", type="sring", title="Collect point instagram account", example="@insta"),
  *     @OA\Property(property="image", type="sring", title="Collect point logo image", example="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png"),
  *     @OA\Property(property="location", type="object",
  *         @OA\Property(
@@ -47,6 +48,11 @@ use Illuminate\Database\Eloquent\Model;
  *                 type="integer",
  *                 example="2"
  *             ),
+ *             @OA\Property(
+ *                 property="item_category_name",
+ *                 type="string",
+ *                 example="University"
+ *             ),
  *         ),
  *     ),
  *     @OA\Property(property="updated_at", type="datetime", example="2022-03-09T10:01:17.000000Z"),
@@ -58,7 +64,7 @@ class CollectPoint extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'phone', 'telegram', 'image', 'address', 'latitude', 'longitude', 'user_id'];
+    protected $fillable = ['name', 'phone', 'telegram', 'instagram', 'image', 'address', 'latitude', 'longitude', 'user_id'];
     protected $appends = ['location'];
     protected $hidden = ['latitude', 'longitude', 'address', 'user_id'];
 

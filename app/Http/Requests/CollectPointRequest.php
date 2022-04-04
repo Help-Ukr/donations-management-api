@@ -27,6 +27,7 @@ class CollectPointRequest extends FormRequest
             'name' => ['required', 'string'],
             'phone' => ['string', 'regex:/\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})/'],
             'telegram' => ['string', 'regex:/.*\B@(?=\w{5,64}\b)[a-zA-Z0-9]+(?:_[a-zA-Z0-9]+)*.*/'],
+            'instagram' => ['string'],
             'image' => ['url'],
             
             'location' => ['array:address,latitude,longitude'],
