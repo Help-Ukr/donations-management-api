@@ -101,16 +101,6 @@ class CollectPointsTest extends TestCase
         $this->assertEquals($this->collectPoint->toArray(), $response);
     }
 
-    public function test_detele_collect_point()
-    {
-        $this->deleteJson(route('collect-point.destroy', $this->collectPoint->id))
-                ->assertNoContent();
-
-        $this->assertDatabaseMissing('collect_points', $this->collectPoint->getAttributes());
-        $this->assertDatabaseMissing('available_items', ['collect_point_id' => $this->collectPoint->id]);
-        $this->assertDatabaseMissing('needed_items', ['collect_point_id' => $this->collectPoint->id]);
-    }
-
     public function test_update_collect_point()
     {
         $oldCollectPoint = $this->collectPoint->toArray();

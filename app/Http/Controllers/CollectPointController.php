@@ -245,50 +245,6 @@ class CollectPointController extends Controller
     }
 
     /**
-     * @OA\Delete(
-     *     path="/api/collect-point/{collectPointId}",
-     *     summary="Delete collect point record",
-     *     operationId="deleteCollectionPoint",
-     *     tags={"Collect point CRUD"},
-     *     security={
-     *           {"bearerAuth":{}}
-     *     },
-     *     @OA\Parameter(
-     *         description="ID collect point",
-     *         in="path",
-     *         name="collectPointId",
-     *         required=true,
-     *         example="1",
-     *         @OA\Schema(
-     *            type="integer",
-     *            format="int64"
-     *         )
-     *     ),
-     *     @OA\Response(
-     *         response=204,
-     *         description="Successful operation",
-     *     ),
-     *     @OA\Response(
-     *             response="401",
-     *             description="Unauthenticated",
-     *     ),
-     *     @OA\Response(
-     *         response="429",
-     *         description="Too Many Requests",
-     *     ),
-     * )
-     *
-     * @return JsonResponse
-     * @throws Throwable
-     */
-    public function destroy(CollectPoint $collectPoint)
-    {
-        $collectPoint->delete();
-
-        return response('', Response::HTTP_NO_CONTENT);
-    }
-
-    /**
      * @OA\Patch(
      *     path="/api/collect-point/{collectPointId}",
      *     summary="Update icollect point record",
