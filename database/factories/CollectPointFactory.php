@@ -26,7 +26,6 @@ class CollectPointFactory extends Factory
                 'latitude' => $this->faker->latitude(),
                 'longitude' => $this->faker->longitude(),
             ],
-            'available_items' => $this->getAvailableItems(),
             'needed_items' => $this->getNeededItems(),
         ];
     }
@@ -38,22 +37,6 @@ class CollectPointFactory extends Factory
 
         while($i > 0){
             $result[] = ['item_category_id' => rand(0, 10)];
-            $i--;
-        }
-
-        return $result;
-    }
-
-    private function getAvailableItems()
-    {
-        $i = rand(1, 3);
-        $result = [];
-
-        while($i > 0){
-            $result[] = [
-                'item_category_id' => rand(0, 10),
-                'quantity' => rand(0, 100),
-            ];
             $i--;
         }
 

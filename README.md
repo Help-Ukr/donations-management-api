@@ -36,9 +36,7 @@ phpunit tests
   -------
   GET|HEAD        api/collect-point
   POST            api/collect-point
-  GET|HEAD        api/collect-point/{collect_point}
-  PUT|PATCH       api/collect-point/{collect_point}
-  DELETE          api/collect-point/{collect_point}
+  PUT|PATCH       api/collect-point
   -------
   POST            api/login
   GET            api/logout

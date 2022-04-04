@@ -36,10 +36,6 @@ class CollectPointRequest extends FormRequest
             
             'needed_items' => ['array'],
             'needed_items.*.item_category_id' => ['integer', 'required'],
-
-            'available_items' => ['array'],
-            'available_items.*.item_category_id' => ['integer', 'required'],
-            'available_items.*.quantity' => ['integer', 'required'],
         ];
     }
 }

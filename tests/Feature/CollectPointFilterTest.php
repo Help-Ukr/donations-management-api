@@ -26,12 +26,7 @@ class CollectPointFilterTest extends TestCase
         ]);
 
         $this->collectPointKyiv->neededItems()->createMany($collectPointKyivData['needed_items']);
-        $this->collectPointKyiv->availableItems()->createMany([
-            ["item_category_id" => 3, "quantity" => 12],
-            ["item_category_id" => 5, "quantity" => 12],
-          
-        ]);
-        $this->collectPointKyiv->load(['neededItems', 'availableItems']);
+        $this->collectPointKyiv->load(['neededItems']);
 
         $collectPointDniproData = CollectPoint::factory()->make()->getAttributes();
         $this->collectPointDnipro = CollectPoint::create([
@@ -45,12 +40,7 @@ class CollectPointFilterTest extends TestCase
         ]);
 
         $this->collectPointDnipro->neededItems()->createMany($collectPointDniproData['needed_items']);
-        $this->collectPointDnipro->availableItems()->createMany([
-            ["item_category_id" => 10, "quantity" => 12],
-            ["item_category_id" => 11, "quantity" => 12],
-          
-        ]);
-        $this->collectPointDnipro->load(['neededItems', 'availableItems']);
+        $this->collectPointDnipro->load(['neededItems']);
 
         $collectPointVinnytsiaData = CollectPoint::factory()->make()->getAttributes();
         $this->collectPointVinnytsia = CollectPoint::create([
@@ -64,12 +54,7 @@ class CollectPointFilterTest extends TestCase
         ]);
 
         $this->collectPointVinnytsia->neededItems()->createMany($collectPointVinnytsiaData['needed_items']);
-        $this->collectPointVinnytsia->availableItems()->createMany([
-            ["item_category_id" => 13, "quantity" => 12],
-            ["item_category_id" => 15, "quantity" => 12],
-          
-        ]);
-        $this->collectPointVinnytsia->load(['neededItems', 'availableItems']);
+        $this->collectPointVinnytsia->load(['neededItems']);
 
         $collectPointBerlinData = CollectPoint::factory()->make()->getAttributes();
         $this->collectPointBerlin = CollectPoint::create([
@@ -83,19 +68,14 @@ class CollectPointFilterTest extends TestCase
         ]);
 
         $this->collectPointBerlin->neededItems()->createMany($collectPointBerlinData['needed_items']);
-        $this->collectPointBerlin->availableItems()->createMany([
-            ["item_category_id" => 31, "quantity" => 12],
-            ["item_category_id" => 51, "quantity" => 12],
-          
-        ]);
-        $this->collectPointBerlin->load(['neededItems', 'availableItems']);
+        $this->collectPointBerlin->load(['neededItems']);
 
         $this->authUser();
     }
 
     /**
      * A basic feature test example.
-     * @info https://api.domainname.org/collectionpoint/?bbox={lat1},{lng1},{lat2},{lng2}&itemsAvailable=3,5,10,11
+     * @info https://api.domainname.org/collectionpoint/?bbox={lat1},{lng1},{lat2},{lng2}
      *
      * @return void
      */
@@ -129,23 +109,5 @@ class CollectPointFilterTest extends TestCase
                             ->json();
 
         $this->assertEquals(3, count($response));
-    }
-
-    public function test_get_by_items_available()
-    {
-        $response = $this->getJson(route('collect-point.index', ['itemsAvailable' => '3,5,10,11']))
-            ->assertOk()
-            ->json();
-
-        $this->assertEquals(2, count($response));
-    }
-
-    public function test_get_by_items_available_and_bbox()
-    {
-        $response = $this->getJson(route('collect-point.index', ['itemsAvailable' => '3,5', 'bbox' => '51.3269812,26.5834494,47.9900323,37.6214393']))
-            ->assertOk()
-            ->json();
-
-        $this->assertEquals(1, count($response));
     }
 }

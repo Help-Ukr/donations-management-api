@@ -20,18 +20,6 @@ class CollectPointFilterRequest extends FormRequest
             },
             'Sorry, please check bbox value!'
         );
-
-        $validationFactory->extend(
-            'itemsAvailable',
-            function ($attribute, $value, $parameters) {
-                if(count(explode(',', $value)) == 0){
-                    return false;
-                };
-                return true;
-            },
-            'Sorry, please check itemsAvailable value!'
-        );
-
     }
 
     /**
@@ -53,7 +41,6 @@ class CollectPointFilterRequest extends FormRequest
     {
         return [
             'bbox' => ['string', 'bbox'],
-            'itemsAvailable' => ['string', 'itemsAvailable'],
         ];
     }
 }

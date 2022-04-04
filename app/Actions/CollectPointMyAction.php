@@ -9,6 +9,6 @@ class CollectPointMyAction
 {
     public function handle(): Collection
     {
-        return CollectPoint::where('user_id', \Auth::user()->id)->with(['neededItems', 'availableItems'])->get();
+        return CollectPoint::where('user_id', \Auth::user()->id)->with(['neededItems'])->get();
     }
 }

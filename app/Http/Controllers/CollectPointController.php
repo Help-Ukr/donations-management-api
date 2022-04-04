@@ -17,7 +17,7 @@ class CollectPointController extends Controller
      *     path="/api/collect-point",
      *     summary="Get collect points list with filter",
      *     operationId="getCollectionPoint",
-     *     tags={"Collect point CRUD"},
+     *     tags={"Collect point"},
      *     security={
      *           {"bearerAuth":{}}
      *     },
@@ -27,16 +27,6 @@ class CollectPointController extends Controller
      *         name="bbox",
      *         required=false,
      *         example="51.3269812,26.5834494,47.9900323,37.6214393",
-     *         @OA\Schema(
-     *            type="text",
-     *         )
-     *     ),
-     *     @OA\Parameter(
-     *         description="Filter collect points by items category id",
-     *         in="query",
-     *         name="itemsAvailable",
-     *         required=false,
-     *         example="3,5,10,11",
      *         @OA\Schema(
      *            type="text",
      *         )
@@ -70,7 +60,7 @@ class CollectPointController extends Controller
      *     path="/api/collect-point/my",
      *     summary="Get collect points of current user",
      *     operationId="getCollectionPointsMy",
-     *     tags={"Collect point CRUD"},
+     *     tags={"Collect point"},
      *     security={
      *           {"bearerAuth":{}}
      *     },
@@ -99,55 +89,11 @@ class CollectPointController extends Controller
     }
 
     /**
-     * @OA\Get(
-     *     path="/api/collect-point/{collectPointId}",
-     *     summary="Get collect point record details",
-     *     operationId="queryCollectionPoint",
-     *     tags={"Collect point CRUD"},
-     *     security={
-     *           {"bearerAuth":{}}
-     *     },
-     *     @OA\Parameter(
-     *         description="ID collect point",
-     *         in="path",
-     *         name="collectPointId",
-     *         required=true,
-     *         example="1",
-     *         @OA\Schema(
-     *            type="integer",
-     *            format="int64"
-     *         )
-     *     ),
-     *     @OA\Response(
-     *         response=200,
-     *         description="Successful operation",
-     *         @OA\JsonContent(ref="#/components/schemas/CollectPoint")
-     *     ),
-     *     @OA\Response(
-     *             response="401",
-     *             description="Unauthenticated",
-     *     ),
-     *     @OA\Response(
-     *         response="429",
-     *         description="Too Many Requests",
-     *     ),
-     * )
-     *
-     * @return JsonResponse
-     * @throws Throwable
-     */
-    public function show(CollectPoint $collectPoint)
-    {
-        $collectPoint->load(['neededItems', 'availableItems']);
-        return response($collectPoint);
-    }
-
-    /**
      * @OA\Post(
      *     path="/api/collect-point",
      *     summary="Create collect point record",
      *     operationId="createCollectionPoint",
-     *     tags={"Collect point CRUD"},
+     *     tags={"Collect point"},
      *     security={
      *           {"bearerAuth":{}}
      *     },
@@ -166,20 +112,6 @@ class CollectPointController extends Controller
      *                          property="item_category_id",
      *                          type="integer",
      *                          example="2"
-     *                      ),
-     *                  ),
-     *            ),
-     *            @OA\Property(property="available_items", type="array",
-     *                  @OA\Items( type="object",
-     *                      @OA\Property(
-     *                          property="item_category_id",
-     *                          type="integer",
-     *                          example="2"
-     *                      ),
-     *                      @OA\Property(
-     *                          property="quantity",
-     *                          type="integer",
-     *                          example="10"
      *                      ),
      *                  ),
      *            ),
@@ -238,9 +170,8 @@ class CollectPointController extends Controller
 
         $collectPoint = CollectPoint::create($requestData);
         $collectPoint->neededItems()->createMany($requestData['needed_items']);
-        $collectPoint->availableItems()->createMany($requestData['available_items']);
 
-        $collectPoint->load(['neededItems', 'availableItems']);
+        $collectPoint->load(['neededItems']);
         return $collectPoint;
     }
 
@@ -249,7 +180,7 @@ class CollectPointController extends Controller
      *     path="/api/collect-point/{collectPointId}",
      *     summary="Update icollect point record",
      *     operationId="updateCollectionPoint",
-     *     tags={"Collect point CRUD"},
+     *     tags={"Collect point"},
      *     security={
      *           {"bearerAuth":{}}
      *     },
@@ -301,20 +232,6 @@ class CollectPointController extends Controller
      *                     ),
      *                ),
      *           ),
-     *           @OA\Property(property="available_items", type="array",
-     *                 @OA\Items( type="object",
-     *                     @OA\Property(
-     *                         property="item_category_id",
-     *                         type="integer",
-     *                         example="2"
-     *                     ),
-     *                     @OA\Property(
-     *                         property="quantity",
-     *                         type="integer",
-     *                         example="10"
-     *                     ),
-     *                 ),
-     *           ),
      *        ),
      *     ),
      *     @OA\Response(
@@ -344,11 +261,9 @@ class CollectPointController extends Controller
         unset($requestData['location']);
         $collectPoint->update($requestData);
         $collectPoint->neededItems()->delete();
-        $collectPoint->availableItems()->delete();
         $collectPoint->neededItems()->createMany($requestData['needed_items']);
-        $collectPoint->availableItems()->createMany($requestData['available_items']);
 
-        $collectPoint->load(['neededItems', 'availableItems']);
+        $collectPoint->load(['neededItems']);
         return response($collectPoint);
     }
 }

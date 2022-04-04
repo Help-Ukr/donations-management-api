@@ -31,8 +31,7 @@ class CollectPointsTest extends TestCase
         ]);
 
         $this->collectPoint->neededItems()->createMany($collectPointData['needed_items']);
-        $this->collectPoint->availableItems()->createMany($collectPointData['available_items']);
-        $this->collectPoint->load(['neededItems', 'availableItems']);
+        $this->collectPoint->load(['neededItems']);
     }
 
     public function test_do_not_allow_for_unauthenticated_users()
@@ -53,22 +52,16 @@ class CollectPointsTest extends TestCase
 
         $collectPointArray = $collectPoint->getAttributes();
         $neededItemsArray = $collectPointArray['needed_items'];
-        $availableItemsArray = $collectPointArray['available_items'];
 
         $collectPointArray['address'] = $collectPointArray['location']['address'];
         $collectPointArray['latitude'] = $collectPointArray['location']['latitude'];
         $collectPointArray['longitude'] = $collectPointArray['location']['longitude'];
-        unset($collectPointArray['location'], $collectPointArray['needed_items'], $collectPointArray['available_items']);
+        unset($collectPointArray['location'], $collectPointArray['needed_items']);
         $this->assertDatabaseHas('collect_points', $collectPointArray);
 
         foreach($neededItemsArray as $row) {
             $row['collect_point_id'] = $response['id'];
             $this->assertDatabaseHas('needed_items', $row);
-        }
-
-        foreach($availableItemsArray as $row) {
-            $row['collect_point_id'] = $response['id'];
-            $this->assertDatabaseHas('available_items', $row);
         }
     }
 
@@ -92,23 +85,9 @@ class CollectPointsTest extends TestCase
         $this->assertEquals($this->collectPoint->toArray(), $response[0]);
     }
 
-    public function test_get_single_collect_point()
-    {
-        $response = $this->getJson(route('collect-point.show',  $this->collectPoint->id))
-                        ->assertOk()
-                        ->json();
-                        
-        $this->assertEquals($this->collectPoint->toArray(), $response);
-    }
-
     public function test_update_collect_point()
     {
         $oldCollectPoint = $this->collectPoint->toArray();
-        $availableItems = [
-            ['item_category_id' => rand(11, 20), 'quantity' => rand(0, 100)],
-            ['item_category_id' => rand(11, 20), 'quantity' => rand(0, 100)],
-            ['item_category_id' => rand(11, 20), 'quantity' => rand(0, 100)],
-        ];
 
         $neededItems = [
             ['item_category_id' => rand(11, 20)],
@@ -124,7 +103,6 @@ class CollectPointsTest extends TestCase
                         'latitude' => $this->collectPoint->latitude,
                         'longitude' => $this->collectPoint->longitude,
                     ],
-                    'available_items' => $availableItems,
                     'needed_items' => $neededItems,
                 ])
                 ->assertOk();
@@ -139,16 +117,6 @@ class CollectPointsTest extends TestCase
         foreach($oldCollectPoint['needed_items'] as $row) {
             unset($row['id'], $row['updated_at'], $row['created_at']);
             $this->assertDatabaseMissing('needed_items', $row);
-        }
-
-        foreach($availableItems as $availableItem) {
-            $availableItem['collect_point_id'] = $this->collectPoint->id;
-            $this->assertDatabaseHas('available_items', $availableItem);
-        }
-
-        foreach($oldCollectPoint['available_items'] as $row) {
-            unset($row['id'], $row['updated_at'], $row['created_at']);
-            $this->assertDatabaseMissing('available_items', $row);
         }
     }
 

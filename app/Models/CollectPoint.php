@@ -17,7 +17,6 @@ use Illuminate\Database\Eloquent\Model;
  * @OA\Schema(
  *     schema="CollectPoint",
  *     @OA\Property(property="id", type="number", title="Id", example="1"),
- *     @OA\Property(property="user_id", type="number", title="User id", example="1"),
  *     @OA\Property(property="name", type="sring", title="Collect point name", example="Space Meduza"),
  *     @OA\Property(property="phone", type="sring", title="Collect point contact phone number", example="+491767890123"),
  *     @OA\Property(property="telegram", type="sring", title="Collect point telegram account", example="@jax21ukr"),
@@ -50,20 +49,6 @@ use Illuminate\Database\Eloquent\Model;
  *             ),
  *         ),
  *     ),
- *     @OA\Property(property="available_items", type="array",
- *         @OA\Items( type="object",
- *             @OA\Property(
- *                 property="item_category_id",
- *                 type="integer",
- *                 example="2"
- *             ),
- *             @OA\Property(
- *                 property="quantity",
- *                 type="integer",
- *                 example="10"
- *             ),
- *         ),
- *     ),
  *     @OA\Property(property="updated_at", type="datetime", example="2022-03-09T10:01:17.000000Z"),
  *     @OA\Property(property="created_at", type="datetime", example="2022-03-09T10:01:17.000000Z"),
  * )
@@ -75,14 +60,13 @@ class CollectPoint extends Model
 
     protected $fillable = ['name', 'phone', 'telegram', 'image', 'address', 'latitude', 'longitude', 'user_id'];
     protected $appends = ['location'];
-    protected $hidden = ['latitude', 'longitude', 'address'];
+    protected $hidden = ['latitude', 'longitude', 'address', 'user_id'];
 
     public static function boot()
     {
         parent::boot();
         self::deleting(function($collectPoint){
             $collectPoint->neededItems->each->delete();
-            $collectPoint->availableItems->each->delete();
         });
     }
 
@@ -101,13 +85,5 @@ class CollectPoint extends Model
     public function neededItems()
     {
         return $this->hasMany(NeededItem::class);
-    }
-
-    /**
-     * @return HasMany
-     */
-    public function availableItems()
-    {
-        return $this->hasMany(AvailableItems::class);
     }
 }
