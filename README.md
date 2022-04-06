@@ -39,6 +39,6 @@ phpunit tests
   PUT|PATCH       api/collect-point
   -------
   POST            api/login
-  GET            api/logout
+  GET             api/logout
 
 ```
