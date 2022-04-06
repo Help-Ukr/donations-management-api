@@ -14,9 +14,6 @@ class ItemCategoryController extends Controller
      *     summary="Get item categories list",
      *     operationId="getItemCategories",
      *     tags={"Item Category"},
-     *     security={
-     *           {"bearerAuth":{}}
-     *     },
      *     @OA\Response(
      *         response=200,
      *         description="Successful operation",
