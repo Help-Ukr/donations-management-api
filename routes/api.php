@@ -21,13 +21,13 @@ use App\Http\Controllers\Auth\ForgotPasswordController;
 
 Route::middleware('throttle')->group(function(){
     Route::middleware('auth:sanctum')->group(function(){
-        Route::apiResource('item-category', ItemCategoryController::class)->only(['index']);
         Route::get('collect-point/my', [CollectPointController::class, 'getMyPoints'])->name('collect-point.my');
         Route::patch('collect-point', [CollectPointController::class, 'update'])->name('collect-point.update');
         Route::apiResource('collect-point', CollectPointController::class)->except(['destroy', 'show', 'update', 'index']);
         Route::get('/logout', LogoutController::class)->name('user.logout');
     });
 
+    Route::apiResource('item-category', ItemCategoryController::class)->only(['index']);
     Route::apiResource('collect-point', CollectPointController::class)->only(['index']);
     Route::post('/login', LoginController::class)->name('user.login');
 });
