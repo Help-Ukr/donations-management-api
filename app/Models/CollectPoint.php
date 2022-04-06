@@ -53,6 +53,11 @@ use Illuminate\Database\Eloquent\Model;
  *                 type="string",
  *                 example="University"
  *             ),
+ *             @OA\Property(
+ *                 property="item_category_icon",
+ *                 type="string",
+ *                 example="🔦"
+ *             ),
  *         ),
  *     ),
  *     @OA\Property(property="updated_at", type="datetime", example="2022-03-09T10:01:17.000000Z"),

@@ -11,11 +11,16 @@ class NeededItem extends Model
 
     protected $fillable = ['item_category_id'];
     protected $hidden = ['created_at', 'updated_at', 'id', 'collect_point_id', 'itemCategory'];
-    protected $appends = ['item_category_name'];
+    protected $appends = ['item_category_name', 'item_category_icon'];
 
     public function getItemCategoryNameAttribute()
     {
         return $this->itemCategory->name;
+    }
+
+    public function getItemCategoryIconAttribute()
+    {
+        return $this->itemCategory->icon;
     }
 
     /**
