@@ -19,9 +19,6 @@ class CollectPointController extends Controller
      *     summary="Get collect points list with filter",
      *     operationId="getCollectionPoint",
      *     tags={"Collect point"},
-     *     security={
-     *           {"bearerAuth":{}}
-     *     },
      *     @OA\Parameter(
      *         description="Filter collect points by coordinate pair 1 - is the upper left corner, coordinate pair 2 - is the lower right corner",
      *         in="query",
@@ -41,10 +38,6 @@ class CollectPointController extends Controller
      *         response="429",
      *         description="Too Many Requests",
      *    ),
-     *     @OA\Response(
-     *         response="401",
-     *         description="Unauthenticated",
-     *     ),
      * )
      *
      * @param CollectPointFilterRequest $request
