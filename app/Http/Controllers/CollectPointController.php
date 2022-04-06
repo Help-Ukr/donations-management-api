@@ -96,6 +96,7 @@ class CollectPointController extends Controller
      *         description="Input data format",
      *         @OA\JsonContent(
      *            required={"name", "location"},
+     *            @OA\Property(property="enabled", type="boolean", example="true"),
      *            @OA\Property(property="name", type="string", example="Space Meduza"),
      *            @OA\Property(property="phone", type="sring", title="Collect point contact phone number", example="+491767890123"),
      *            @OA\Property(property="telegram", type="sring", title="Collect point telegram account", example="@jax21ukr"),
@@ -183,6 +184,7 @@ class CollectPointController extends Controller
      *         description="Input data format",
      *         @OA\JsonContent(
      *            required={"name", "location"},
+     *            @OA\Property(property="enabled", type="boolean", example="true"),
      *            @OA\Property(property="name", type="string", example="new name"),
      *            @OA\Property(property="phone", type="sring", title="Collect point contact phone number", example="+491767890123"),
      *            @OA\Property(property="telegram", type="sring", title="Collect point telegram account", example="@jax21ukr"),

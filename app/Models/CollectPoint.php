@@ -17,6 +17,7 @@ use Illuminate\Database\Eloquent\Model;
  * @OA\Schema(
  *     schema="CollectPoint",
  *     @OA\Property(property="id", type="number", title="Id", example="1"),
+ *     @OA\Property(property="enabled", type="boolean", title="Is enabled current collect point", example="true"),
  *     @OA\Property(property="name", type="sring", title="Collect point name", example="Space Meduza"),
  *     @OA\Property(property="phone", type="sring", title="Collect point contact phone number", example="+491767890123"),
  *     @OA\Property(property="telegram", type="sring", title="Collect point telegram account", example="@jax21ukr"),
@@ -69,9 +70,10 @@ class CollectPoint extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'phone', 'telegram', 'instagram', 'image', 'address', 'latitude', 'longitude', 'user_id'];
+    protected $fillable = ['name', 'phone', 'telegram', 'instagram', 'image', 'address', 'latitude', 'longitude', 'user_id', 'enabled'];
     protected $appends = ['location'];
     protected $hidden = ['latitude', 'longitude', 'address', 'user_id'];
+    protected $casts = ['enabled' => 'boolean'];
 
     public static function boot()
     {
