@@ -13,6 +13,7 @@ use Illuminate\Database\Eloquent\Model;
  *
  * @OA\Schema(
  *     schema="ItemCategory",
+ *     required={"id", "item_category_id", "name", "icon"},
  *     @OA\Property(property="id", type="number", title="Id", example="1"),
  *     @OA\Property(property="item_category_id", type="number", title="Parent Id", example="1"),
  *     @OA\Property(property="name", type="string", title="Username", example="food"),
