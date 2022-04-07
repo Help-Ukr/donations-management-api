@@ -20,7 +20,7 @@ use App\Notifications\ResetPasswordLinkNotification;
  * @OA\Schema(
  *     schema="User",
  *     @OA\Property(property="id", type="number", title="Id", example="1"),
- *     @OA\Property(property="name", type="sring", title="Username", example="James Joseph Brown"),
+ *     @OA\Property(property="name", type="string", title="Username", example="James Joseph Brown"),
  *     @OA\Property(property="email", type="email", title="User email", example="james.j.b@gmail.com"),
  *     @OA\Property(property="updated_at", type="datetime", example="2022-03-09T10:01:17.000000Z"),
  *     @OA\Property(property="created_at", type="datetime", example="2022-03-09T10:01:17.000000Z"),

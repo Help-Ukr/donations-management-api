@@ -15,8 +15,8 @@ use Illuminate\Database\Eloquent\Model;
  *     schema="ItemCategory",
  *     @OA\Property(property="id", type="number", title="Id", example="1"),
  *     @OA\Property(property="item_category_id", type="number", title="Parent Id", example="1"),
- *     @OA\Property(property="name", type="sring", title="Username", example="food"),
- *     @OA\Property(property="icon", type="sring", title="icon", example="🔦"),
+ *     @OA\Property(property="name", type="string", title="Username", example="food"),
+ *     @OA\Property(property="icon", type="string", title="icon", example="🔦"),
  * )
  * @method static User create($attributes = [])
  */
