@@ -73,7 +73,7 @@ class CollectPoint extends Model
     protected $fillable = ['name', 'phone', 'telegram', 'instagram', 'image', 'address', 'latitude', 'longitude', 'user_id', 'enabled'];
     protected $appends = ['location'];
     protected $hidden = ['latitude', 'longitude', 'address', 'user_id'];
-    protected $casts = ['enabled' => 'boolean'];
+    protected $casts = ['enabled' => 'boolean', 'latitude' => 'float', 'longitude' => 'float'];
 
     public static function boot()
     {
