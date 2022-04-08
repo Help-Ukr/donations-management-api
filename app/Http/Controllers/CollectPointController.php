@@ -100,6 +100,7 @@ class CollectPointController extends Controller
      *            @OA\Property(property="name", type="string", example="Space Meduza"),
      *            @OA\Property(property="phone", type="string", title="Collect point contact phone number", example="+491767890123"),
      *            @OA\Property(property="telegram", type="string", title="Collect point telegram account", example="@jax21ukr"),
+     *            @OA\Property(property="instagram", type="string", title="Collect point instagram account", example="@insta"),
      *            @OA\Property(property="image", type="string", title="Collect point logo image", example="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png"),
      *            @OA\Property(property="needed_items", type="array",
      *                  @OA\Items( type="object",
@@ -188,6 +189,7 @@ class CollectPointController extends Controller
      *            @OA\Property(property="name", type="string", example="new name"),
      *            @OA\Property(property="phone", type="string", title="Collect point contact phone number", example="+491767890123"),
      *            @OA\Property(property="telegram", type="string", title="Collect point telegram account", example="@jax21ukr"),
+     *            @OA\Property(property="instagram", type="string", title="Collect point instagram account", example="@insta"),
      *            @OA\Property(property="image", type="string", title="Collect point logo image", example="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png"),
      *            @OA\Property(property="location", type="object", required={"address", "latitude", "longitude"},
      *                          @OA\Property(
