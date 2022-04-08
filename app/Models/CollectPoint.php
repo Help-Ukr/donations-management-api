@@ -16,7 +16,7 @@ use Illuminate\Database\Eloquent\Model;
  *
  * @OA\Schema(
  *     schema="CollectPoint",
- *     required={"id", "enabled", "name", "phone", "telegram", "instagram", "image", "location", "updated_at", "created_at", "needed_items"},
+ *     required={"id", "enabled", "name", "phone", "location", "updated_at", "created_at", "needed_items"},
  *     @OA\Property(property="id", type="number", title="Id", example="1"),
  *     @OA\Property(property="enabled", type="boolean", title="Is enabled current collect point", example="true"),
  *     @OA\Property(property="name", type="string", title="Collect point name", example="Space Meduza"),

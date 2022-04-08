@@ -61,7 +61,7 @@ class CollectPointController extends Controller
      *     @OA\Response(
      *         response=200,
      *         description="Successful operation",
-     *         @OA\JsonContent(type="array", @OA\Items(ref="#/components/schemas/CollectPoint"))
+     *         @OA\Items(ref="#/components/schemas/CollectPoint")
      *     ),
      *     @OA\Response(
      *         response="429",

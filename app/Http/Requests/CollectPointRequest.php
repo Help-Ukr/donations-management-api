@@ -26,9 +26,9 @@ class CollectPointRequest extends FormRequest
         return [
             'name' => ['required', 'string'],
             'enabled' => ['boolean'],
-            'phone' => ['string', 'regex:/\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})/'],
-            'telegram' => ['string', 'regex:/.*\B@(?=\w{5,64}\b)[a-zA-Z0-9]+(?:_[a-zA-Z0-9]+)*.*/'],
-            'instagram' => ['string'],
+            'phone' => ['nullable', 'string', 'regex:/\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})/'],
+            'telegram' => ['nullable', 'string', 'regex:/.*\B@(?=\w{5,64}\b)[a-zA-Z0-9]+(?:_[a-zA-Z0-9]+)*.*/'],
+            'instagram' => ['nullable', 'string'],
             'image' => ['url'],
             
             'location' => ['array:address,latitude,longitude'],
