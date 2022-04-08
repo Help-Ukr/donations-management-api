@@ -7,8 +7,8 @@ use Illuminate\Database\Eloquent\Collection;
 
 class CollectPointMyAction 
 {
-    public function handle(): CollectPoint
+    public function handle(): Collection
     {
-        return CollectPoint::where('user_id', \Auth::user()->id)->with(['neededItems'])->first();
+        return CollectPoint::where('user_id', \Auth::user()->id)->with(['neededItems'])->get();
     }
 }
