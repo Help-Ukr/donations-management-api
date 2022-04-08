@@ -3,12 +3,11 @@
 namespace App\Actions;
 
 use App\Models\CollectPoint;
-use Illuminate\Database\Eloquent\Collection;
 
 class CollectPointMyAction 
 {
-    public function handle(): Collection
+    public function handle(): CollectPoint
     {
-        return CollectPoint::where('user_id', \Auth::user()->id)->with(['neededItems'])->get();
+        return CollectPoint::where('user_id', \Auth::user()->id)->with(['neededItems'])->firstOrFail();
     }
 }
