@@ -103,7 +103,7 @@ class CollectPointController extends Controller
      *            @OA\Property(property="instagram", type="string", title="Collect point instagram account", example="@insta"),
      *            @OA\Property(property="image", type="string", title="Collect point logo image", example="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png"),
      *            @OA\Property(property="needed_items", type="array",
-     *                  @OA\Items( type="object",
+     *                  @OA\Items( type="object", required={"item_category_id"},
      *                      @OA\Property(
      *                          property="item_category_id",
      *                          type="integer",
@@ -211,7 +211,7 @@ class CollectPointController extends Controller
      *                          ),
      *            ),
      *            @OA\Property(property="needed_items", type="array",
-     *                @OA\Items( type="object",
+     *                @OA\Items( type="object", required={"item_category_id"},
      *                     @OA\Property(
      *                         property="item_category_id",
      *                         type="integer",
