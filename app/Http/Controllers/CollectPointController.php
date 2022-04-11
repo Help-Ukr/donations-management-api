@@ -64,6 +64,10 @@ class CollectPointController extends Controller
      *         @OA\JsonContent(ref="#/components/schemas/CollectPoint")
      *     ),
      *     @OA\Response(
+     *         response=204,
+     *         description="No data found",
+     *     ),
+     *     @OA\Response(
      *         response="429",
      *         description="Too Many Requests",
      *    ),
