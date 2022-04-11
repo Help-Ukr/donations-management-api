@@ -6,8 +6,8 @@ use App\Models\CollectPoint;
 
 class CollectPointMyAction 
 {
-    public function handle(): CollectPoint
+    public function handle(): CollectPoint|null
     {
-        return CollectPoint::where('user_id', \Auth::user()->id)->with(['neededItems'])->firstOrFail();
+        return CollectPoint::where('user_id', \Auth::user()->id)->with(['neededItems'])->first();
     }
 }

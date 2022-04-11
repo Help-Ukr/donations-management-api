@@ -79,7 +79,13 @@ class CollectPointController extends Controller
      */
     public function getMyPoints(CollectPointMyAction $action)
     {
-        return response($action->handle());
+        $collectPoint = $action->handle();
+        
+        if(is_null($collectPoint)) {
+            return response('no data found', Response::HTTP_NO_CONTENT);
+        }
+
+        return response($collectPoint);
     }
 
     /**
