@@ -44,7 +44,7 @@ use Illuminate\Database\Eloquent\Model;
  *         ),
  *     ),
  *     @OA\Property(property="needed_items", type="array",
- *         @OA\Items( type="object",
+ *         @OA\Items( type="object", required={"item_category_id", "item_category_name", "item_category_icon"},
  *             @OA\Property(
  *                 property="item_category_id",
  *                 type="integer",
