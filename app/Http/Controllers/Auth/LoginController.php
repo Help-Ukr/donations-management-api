@@ -61,7 +61,7 @@ class LoginController extends Controller
 
             $user = User::updateOrCreate(
                 ['email' => $mediaUser->email],
-                ['name' => $mediaUser->name, 'password' =>  encrypt('123456dummy')]
+                ['name' => $mediaUser->name, 'password' =>  encrypt('123456dummy'), 'photo' => $mediaUser->avatar]
             );
 
             return response([
