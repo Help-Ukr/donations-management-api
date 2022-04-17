@@ -9,7 +9,7 @@ class CollectPointFilterAction
 {
     public function handle($request): Collection
     {
-        $query = CollectPoint::with(['neededItems']);
+        $query = CollectPoint::with(['neededItems'])->where('enabled', 1);
         
         if(array_key_exists('bbox', $request)){
             $coords = explode(',', $request['bbox']);
