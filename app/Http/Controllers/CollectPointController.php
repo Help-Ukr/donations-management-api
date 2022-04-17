@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\CollectPoint;
 use App\Actions\CollectPointFilterAction;
 use App\Actions\CollectPointMyAction;
+use App\Actions\CollectPointPhotoAction;
 use App\Http\Requests\CollectPointRequest;
+use App\Http\Requests\CollectPointPhotoRequest;
 use App\Http\Requests\CollectPointStoreRequest;
 use App\Http\Requests\CollectPointFilterRequest;
 use Symfony\Component\HttpFoundation\Response;
@@ -90,6 +92,61 @@ class CollectPointController extends Controller
         }
 
         return response($collectPoint);
+    }
+
+    /**
+     * @OA\Post(
+     *     path="/api/collect-point/photo",
+     *     summary="Store collect point photo",
+     *     operationId="storeCollectionPointPhoto",
+     *     tags={"Collect point"},
+     *     security={
+     *           {"bearerAuth":{}}
+     *     },
+     *      @OA\RequestBody(
+     *         @OA\MediaType(
+     *             mediaType="multipart/form-data",
+     *             @OA\Schema(
+     *                 required={"photo"},
+     *                 @OA\Property(
+     *                     description="collect point photo to upload. Max size 2M.",
+     *                     property="photo",
+     *                     type="string",
+     *                     format="binary",
+     *                 ),
+     *             )
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Successful operation",
+     *         @OA\JsonContent(
+     *            required={"url"},
+     *            @OA\Property(property="url", type="string", example="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png"),
+     *         ),
+     *     ),
+     *     @OA\Response(
+     *         response="401",
+     *         description="Unauthenticated",
+     *     ),
+     *     @OA\Response(
+     *         response="422",
+     *         description="Unprocessable Entity",
+     *     ),
+     *     @OA\Response(
+     *         response="429",
+     *         description="Too Many Requests",
+     *     ),
+     * )
+     * @param CollectPointPhotoRequest $request
+     * @return JsonResponse
+     * @throws Throwable
+     */
+    public function photo(CollectPointPhotoRequest $request, CollectPointPhotoAction $action)
+    {
+        return [
+            'url' => $action->handle($request->file('photo')->getPathName())
+        ];
     }
 
     /**

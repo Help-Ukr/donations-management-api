@@ -22,6 +22,7 @@ use App\Http\Controllers\Auth\ForgotPasswordController;
 Route::middleware('throttle')->group(function(){
     Route::middleware('auth:sanctum')->group(function(){
         Route::get('collect-point/my', [CollectPointController::class, 'getMyPoints'])->name('collect-point.my');
+        Route::post('collect-point/photo', [CollectPointController::class, 'photo'])->name('collect-point.photo');
         Route::patch('collect-point', [CollectPointController::class, 'update'])->name('collect-point.update');
         Route::apiResource('collect-point', CollectPointController::class)->except(['destroy', 'show', 'update', 'index']);
         Route::get('/logout', LogoutController::class)->name('user.logout');

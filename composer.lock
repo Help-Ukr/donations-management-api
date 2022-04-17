@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ab03b39c26d7d02136c6a5369e13b9e2",
+    "content-hash": "59ce08c2cb6fadb423e1194c0dcd2f54",
     "packages": [
         {
             "name": "brick/math",
@@ -2237,6 +2237,70 @@
                 "source": "https://github.com/thephpleague/oauth1-client/tree/v1.10.0"
             },
             "time": "2021-08-15T23:05:49+00:00"
+        },
+        {
+            "name": "mechawrench/php-skynet",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mechawrench/php-skynet.git",
+                "reference": "e7bdcc785250e7f91969b0743c8f1ee4dec0d142"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mechawrench/php-skynet/zipball/e7bdcc785250e7f91969b0743c8f1ee4dec0d142",
+                "reference": "e7bdcc785250e7f91969b0743c8f1ee4dec0d142",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/guzzle": "^7.0",
+                "php": "^7.4|^8.0"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^2.16",
+                "orchestra/testbench": "^5.0",
+                "phpunit/phpunit": "^9.0",
+                "psalm/plugin-laravel": "^1.2",
+                "vimeo/psalm": "^3.11"
+            },
+            "default-branch": true,
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Mechawrench\\PhpSkynet\\PhpSkynetServiceProvider"
+                    ],
+                    "aliases": {
+                        "Php Skynet": "Mechawrench\\PhpSkynet\\PhpSkynetFacade"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Mechawrench\\PhpSkynet\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jesse Schneider",
+                    "email": "jesse.schneider@hey.com",
+                    "homepage": "https://mechawrench.com",
+                    "role": "Developer"
+                }
+            ],
+            "homepage": "https://github.com/mechawrench/php-skynet",
+            "keywords": [
+                "php-skynet"
+            ],
+            "support": {
+                "issues": "https://github.com/mechawrench/php-skynet/issues",
+                "source": "https://github.com/mechawrench/php-skynet/tree/master"
+            },
+            "time": "2021-08-29T18:05:20+00:00"
         },
         {
             "name": "monolog/monolog",
@@ -8636,7 +8700,9 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "mechawrench/php-skynet": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
