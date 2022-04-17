@@ -11,7 +11,7 @@ use Laravel\Socialite\Facades\Socialite;
 
 /**
  * @OA\Post(
- *      path="/api/login",
+ *      path="/api-v1/login",
  *      summary="Sign in",
  *      description="Login by email, password",
  *      operationId="authLogin",

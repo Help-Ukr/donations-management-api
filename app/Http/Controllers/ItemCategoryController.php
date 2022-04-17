@@ -10,7 +10,7 @@ class ItemCategoryController extends Controller
 {  
     /**
      * @OA\Get(
-     *     path="/api/item-category",
+     *     path="/api-v1/item-category",
      *     summary="Get item categories list",
      *     operationId="getItemCategories",
      *     tags={"Item Category"},

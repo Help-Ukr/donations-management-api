@@ -138,8 +138,8 @@
         <script>
             $.ajax({
                 type: "POST",
-                // url: 'http://localhost/api/login',
-                url: 'https://api.tiny-crm.biz.ua/api/login',
+                // url: 'http://localhost/api-v1/login',
+                url: 'https://api.tiny-crm.biz.ua/api-v1/login',
                 data: {email:'email@mail.com', password:'password'},
                 success: function(a,b,c){ console.info(a,b,c);}
             });

@@ -8,7 +8,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 /**
  * @OA\Get(
- *      path="/api/logout",
+ *      path="/api-v1/logout",
  *      summary="Log out",
  *      description="Logout user current token",
  *      operationId="authLogout",

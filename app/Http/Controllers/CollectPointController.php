@@ -17,7 +17,7 @@ class CollectPointController extends Controller
 {
     /**
      * @OA\Get(
-     *     path="/api/collect-point",
+     *     path="/api-v1/collect-point",
      *     summary="Get collect points list with filter",
      *     operationId="getCollectionPoint",
      *     tags={"Collect point"},
@@ -53,7 +53,7 @@ class CollectPointController extends Controller
 
     /**
      * @OA\Get(
-     *     path="/api/collect-point/my",
+     *     path="/api-v1/collect-point/my",
      *     summary="Get collect points of current user",
      *     operationId="getCollectionPointsMy",
      *     tags={"Collect point"},
@@ -96,7 +96,7 @@ class CollectPointController extends Controller
 
     /**
      * @OA\Post(
-     *     path="/api/collect-point/photo",
+     *     path="/api-v1/collect-point/photo",
      *     summary="Store collect point photo",
      *     operationId="storeCollectionPointPhoto",
      *     tags={"Collect point"},
@@ -151,7 +151,7 @@ class CollectPointController extends Controller
 
     /**
      * @OA\Post(
-     *     path="/api/collect-point",
+     *     path="/api-v1/collect-point",
      *     summary="Create collect point record",
      *     operationId="createCollectionPoint",
      *     tags={"Collect point"},
@@ -240,7 +240,7 @@ class CollectPointController extends Controller
 
     /**
      * @OA\Patch(
-     *     path="/api/collect-point",
+     *     path="/api-v1/collect-point",
      *     summary="Update icollect point record",
      *     operationId="updateCollectionPoint",
      *     tags={"Collect point"},
