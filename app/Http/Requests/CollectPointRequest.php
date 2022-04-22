@@ -25,6 +25,7 @@ class CollectPointRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string'],
+            'description' => ['string', 'max:512'],
             'enabled' => ['boolean'],
             'phone' => ['nullable', 'string', 'regex:/\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})/'],
             'telegram' => ['nullable', 'string', 'regex:/.*\B@(?=\w{5,64}\b)[a-zA-Z0-9]+(?:_[a-zA-Z0-9]+)*.*/'],
