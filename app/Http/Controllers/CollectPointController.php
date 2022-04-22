@@ -120,10 +120,6 @@ class CollectPointController extends Controller
      *     @OA\Response(
      *         response=200,
      *         description="Successful operation",
-     *         @OA\JsonContent(
-     *            required={"url"},
-     *            @OA\Property(property="url", type="string", example="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png"),
-     *         ),
      *     ),
      *     @OA\Response(
      *         response="401",
@@ -144,11 +140,8 @@ class CollectPointController extends Controller
      */
     public function photo(CollectPointPhotoRequest $request, CollectPointPhotoAction $action)
     {
-
-        response('ok', Response::HTTP_NO_CONTENT);
-        return [
-            'url' => $action->handle($request->file('photo')->getPathName())
-        ];
+        $action->handle($request->file('photo')->getPathName());
+        response(Response::HTTP_NO_CONTENT);
     }
 
     /**
