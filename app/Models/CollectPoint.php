@@ -20,7 +20,7 @@ use Illuminate\Database\Eloquent\Model;
  *     @OA\Property(property="id", type="number", title="Id", example="1"),
  *     @OA\Property(property="enabled", type="boolean", title="Is enabled current collect point", example="true"),
  *     @OA\Property(property="name", type="string", title="Collect point name", example="Space Meduza"),
- *     @OA\Property(property="description", type="text", title="Collect point description", example="Volunteers uniting to bring aid, donations & transport to Refugees and people in need. Sends convoys to the border regularly"),
+ *     @OA\Property(property="description", type="text", title="Collect point description (max:512)", example="Volunteers uniting to bring aid, donations & transport to Refugees and people in need. Sends convoys to the border regularly"),
  *     @OA\Property(property="phone", type="string", title="Collect point contact phone number", example="+491767890123"),
  *     @OA\Property(property="telegram", type="string", title="Collect point telegram account", example="@jax21ukr"),
  *     @OA\Property(property="instagram", type="string", title="Collect point instagram account", example="@insta"),
