@@ -144,6 +144,8 @@ class CollectPointController extends Controller
      */
     public function photo(CollectPointPhotoRequest $request, CollectPointPhotoAction $action)
     {
+
+        return 201
         return [
             'url' => $action->handle($request->file('photo')->getPathName())
         ];
